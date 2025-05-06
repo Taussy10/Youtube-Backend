@@ -1,7 +1,19 @@
 import express from "express"
+import userRouter from "./routes/user.js";
 
 // intiate the app 
 const app = express()
+
+
+
+// user routes
+// Always write user rotues in plural 
+// not user it's should be users
+app.use('/api/v1/users', userRouter)
+
+
+// for parsing application/json basically into JSOn 
+app.use(express.json()); 
 
 // Intialize the server
 app.get("/", (req, res) => (
