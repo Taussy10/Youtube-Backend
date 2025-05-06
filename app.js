@@ -1,5 +1,6 @@
 import express from "express"
-import userRouter from "./routes/user.js";
+import 'dotenv/config'
+import userRouter from "./routes/users.routes.js";
 
 // intiate the app 
 const app = express()
@@ -9,6 +10,8 @@ const app = express()
 // user routes
 // Always write user rotues in plural 
 // not user it's should be users
+// He is saying it middlewares 
+// it's a base url  
 app.use('/api/v1/users', userRouter)
 
 
@@ -32,7 +35,12 @@ app.get("/", (req, res) => (
 // make it async for time if it's take 
 // Then who will resolve it cause by async it become promise
 
-app.listen(PORT, async() => ( 
+const PORT = process.env.PORT
+app.listen(PORT, async() => {
+
     console.log(`Server is running on http://localhost:${PORT}`)
+   
+    
+}
         
-))
+)

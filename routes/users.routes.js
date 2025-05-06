@@ -1,14 +1,17 @@
 // To creat rouer we need to import router 
 import {Router} from "express"
 
+
 const userRouter = Router()
+// Btw you also write this then you have to import express
+// const  userRoute  r = express.Router()
 
 // In userRouter we route like: 
 // sign-up , login , update-profile , subscribe 
 
 // Why post method ? Cause we want to 
 // add something new in database 
-userRouter.post("/sign-up",(req,res)=> (
+userRouter.post("/signup",(req,res)=> (
  res.send({
 message: "User has signed up"    
  })
