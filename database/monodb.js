@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// This file is for connecting mongoDB with Server
+// Connect MonoDB to the server
 export const connectToDb = async() => {
     try {
         // function connect(uri: string, options?: mongoose.ConnectOptions):
@@ -9,6 +11,6 @@ export const connectToDb = async() => {
         await mongoose.connect(process.env.MONGODB_URI)
     } catch (error) {
      console.log("Failed to connect with mongoDB :",error);
-        
+        throw new Error("Failed to connect with mongoDB", error)
     }
 }

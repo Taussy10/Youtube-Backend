@@ -43,6 +43,8 @@ app.listen(PORT, async() => {
     console.log(`Server is running on http://localhost:${PORT}`)
 // When server start then connect with monogoDB   
 // why awiat cause this function returns a promise
+// BTW you can aslo write this function below 
+// where you intialize express
 await connectToDb()
 
     
