@@ -24,18 +24,7 @@ const userSchema = new Schema(
       requried: true,
     },
     channelName: {
-      // Let's talk about types
-      // String ,Number ,Date ,Buffer ,Boolean ,Mixed, ObjectId
-      // Array ,Decimal128 ,Map ,Schema ,UUID ,BigInt ,Double, Int32
-
-      // Either you write type like this
-      // Short way = type: String
-      // or
-      // Long way = Schema.Types.String,
-// Short way will work for everyone except ObjectId and Mixed 
-// so use short way for everything except 2
-
-      type: Schema.Types.String,
+      type: String,
       requried: true,
     },
     email: {
@@ -43,14 +32,39 @@ const userSchema = new Schema(
       unique: true,
       requried: true,
     },
-    id: {
+    phone: {
+      //   type: Number,
+      // he wrote number that's why chose it
       type: String,
       requried: true,
     },
+    password: {
+      type: String,
+      requried: true,
+    },
+
+    logoUrl: {
+      type: String,
+      required: true,
+    },
+    logoId: {
+      type: String,
+      required: true,
+    },
+    subscribers: {
+      type: Number,
+      default: 0,
+    },
+    //  reference relation
+    subscribedChannels: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        default: 0,
+      },
+    ],
   },
   { Timestamp: true }
 );
 
-// Know connect Scheme to the models
-// Model name should be uppercase
-export const User = mongoose.model("User", userSchema);
+export const userModel = mongoose.model("User", userSchema);
