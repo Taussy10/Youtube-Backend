@@ -2,10 +2,29 @@ import express from "express"
 import 'dotenv/config'
 import userRouter from "./routes/users.routes.js";
 import { connectToDb } from "./database/monodb.js";
+import cloudinary from "./config/cloudinary.js";
+// when user will upload file then for the time file is uploaded 
+// this will put file here in code 
+import fileUpload from "express-fileupload";
+import bodyParser from "body-parser";
 
 // intiate the app 
 const app = express()
 
+// have to write here middlewares
+// / Don't know waht's the use
+app.use(bodyParser.json())
+// you can also try this 
+// for parsing application/json basically into JSOn 
+// it won't work for formdata 
+// app.use(express.json()); 
+
+// for file upload
+app.use(fileUpload({
+    // for sometime file will store hree till it reaches to cloudniary
+    useTempFiles: true,
+    tempFileDir: "/temp/"
+}))
 
 
 // user routes
@@ -15,9 +34,9 @@ const app = express()
 // it's a base url  
 app.use('/api/v1/users', userRouter)
 
+/
 
-// for parsing application/json basically into JSOn 
-app.use(express.json()); 
+
 
 // Intialize the server
 app.get("/", (req, res) => (
