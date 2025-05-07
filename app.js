@@ -1,6 +1,7 @@
 import express from "express"
 import 'dotenv/config'
 import userRouter from "./routes/users.routes.js";
+import { connectToDb } from "./database/monodb.js";
 
 // intiate the app 
 const app = express()
@@ -37,9 +38,13 @@ app.get("/", (req, res) => (
 
 const PORT = process.env.PORT
 app.listen(PORT, async() => {
+// console.log("URI :",process.env.MONGODB_URI);
 
     console.log(`Server is running on http://localhost:${PORT}`)
-   
+// When server start then connect with monogoDB   
+// why awiat cause this function returns a promise
+await connectToDb()
+
     
 }
         

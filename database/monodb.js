@@ -1,0 +1,14 @@
+import mongoose from "mongoose";
+
+export const connectToDb = async() => {
+    try {
+        // function connect(uri: string, options?: mongoose.ConnectOptions):
+        //  Promise<mongoose.Mongoose>
+        // It's a function that takes a URL and 
+        // returns a promise(so we have to create a function async)
+        await mongoose.connect(process.env.MONGODB_URI)
+    } catch (error) {
+     console.log("Failed to connect with mongoDB :",error);
+        
+    }
+}
